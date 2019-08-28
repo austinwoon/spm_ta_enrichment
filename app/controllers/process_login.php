@@ -10,24 +10,24 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $type = $user->getType();
 
     # getUser($username) will be empty if no user in database
-    if (empty($user)) {
+    if (!isset($user)) {
         $_SESSION['error'] = "Invalid Username or Password";
-        header("Location:../view/home.php");
-        exit();
     }
 
     # check if password matches
     if ($user->authenticateUser($input_pw)) {
         $_SESSION['username'] = $username;
         $_SESSION['userType'] = $type;
-        header("Location:../view/book_list.php");
+        header("Location: ../views/book_list.php");
         exit();
     } else {
         $_SESSION['error'] = "Invalid Username or Password";
-        header("Location:../view/home.php");
-        exit();
+    }
+
+    if (!empty($_SESSION['error'])) {
+        header("Location ../views/home.php");
     }
 } else {
-    header("Location:../view/home.php");
+    header("Location:../views/home.php");
     exit();
 }
