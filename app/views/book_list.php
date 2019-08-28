@@ -18,43 +18,47 @@ $booklist = $booklistDAO->getUserBooks();
     </head>
 
     <body>
-    
-        <form>
-            <input type="button" value="Add a Book" onclick="window.location.href='./add_book.php'" />
-            <!-- <input type="button" value="Delete a Book" onclick="window.location.href='./delete_book.html'" /> -->
-            <?php 
-            if ($_SESSION['userType'] == "admin") {
-                echo "<input type='button' value='Update Book Details' onclick='window.location.href='./update_book.html'' />";
-            }
-            ?>
+        <div class = "container-fluid">
+            <div>
+                <form>
+                    <input type="button" value="Add a Book" onclick="window.location.href='./add_book.php'" />
+                    <!-- <input type="button" value="Delete a Book" onclick="window.location.href='./delete_book.html'" /> -->
+                    <?php 
+                    if ($_SESSION['userType'] == "admin") {
+                        echo "<input type='button' value='Update Book Details' onclick='window.location.href='./update_book.html'' />";
+                    }
+                    ?>
+                    
+                </form>
+            </div>
+            <div>
+                <table border = 1>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Year Published</th>
+                        <th>ISBN</th>
+                        <th>Delete</th>
+                    </tr>
+                <?php
+                if (!empty($booklist)) {
+                    foreach ($booklist as $bookisbn) {
+                        $book = $bookDAO->getBookDetails($bookisbn);
             
-        </form>
+                        echo "
+                        <tr>
+                            <td>{$book->title}</td>
+                            <td>{$book->author}</td>
+                            <td>{$book->publishYear}</td>
+                            <td>{$book->isbn}</td>
+                            <td><input type='button' value='Delete ' onclick=\"window.location.href='../controllers/delete_book.php?isbn={$book->isbn}'\" /></td>
+                        </tr>";
+                    }
+                }
 
-        <table border = 1>
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Year Published</th>
-                <th>ISBN</th>
-                <th>Delete</th>
-            </tr>
-        <?php
-        if (!empty($booklist)) {
-            foreach ($booklist as $bookisbn) {
-                $book = $bookDAO->getBookDetails($bookisbn);
-    
-                echo "
-                <tr>
-                    <td>{$book->title}</td>
-                    <td>{$book->author}</td>
-                    <td>{$book->publishYear}</td>
-                    <td>{$book->isbn}</td>
-                    <td><input type='button' value='Delete ' onclick=\"window.location.href='../controllers/delete_book.php?isbn={$book->isbn}'\" /></td>
-                </tr>";
-            }
-        }
-
-        ?>
-        </table>
+                ?>
+                </table>
+            </div>
+        </div>
     </body>
 </html>
