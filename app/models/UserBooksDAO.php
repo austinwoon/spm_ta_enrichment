@@ -43,7 +43,7 @@ class UserBooksDAO {
             $sql = "DELETE from userbooks WHERE isbn = :isbn AND username = :username";
             $stmt = $this->conn->prepare($sql);
 
-            $stmt->bindParam(":isbn", $book->isbn);
+            $stmt->bindParam(":isbn", $book->getIsbn());
             $stmt->bindParam(":username", $this->username);
 
             $stmt->execute();
@@ -58,7 +58,7 @@ class UserBooksDAO {
         $sql = "INSERT INTO userbooks VALUES (:username, :isbn)";
         $stmt = $this->conn->prepare($sql);
 
-        $stmt->bindParam(":isbn", $book->isbn);
+        $stmt->bindParam(":isbn", $book->getIsbn());
         $stmt->bindParam(":username", $this->username);
 
         $stmt->execute();

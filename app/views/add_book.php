@@ -15,9 +15,9 @@ $userBooks = $userBooksDAO->getUserBooks();
                 
                 foreach ($booklist as $book) {
                     
-                    if (!in_array($book->isbn, $userBooks)) {
+                    if (!in_array($book->getIsbn(), $userBooks)) {
                         var_dump($book);
-                        echo "<option value = '{$book->isbn}'>{$book->title}</option>";
+                        echo "<option value = '{$book->getIsbn()}'>{$book->getTitle()}</option>";
                     }
                 }
                 ?>

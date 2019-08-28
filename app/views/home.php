@@ -18,6 +18,5 @@
             <input type = "submit" value = "Login">
         </form>
 
-        <a href = "../views/register.php">Register New Account</a>
 </body>
 </html>

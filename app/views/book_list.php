@@ -47,11 +47,11 @@ $booklist = $booklistDAO->getUserBooks();
             
                         echo "
                         <tr>
-                            <td>{$book->title}</td>
-                            <td>{$book->author}</td>
-                            <td>{$book->publishYear}</td>
-                            <td>{$book->isbn}</td>
-                            <td><input type='button' value='Delete ' onclick=\"window.location.href='../controllers/delete_book.php?isbn={$book->isbn}'\" /></td>
+                            <td>{$book->getTitle()}</td>
+                            <td>{$book->getauthor()}</td>
+                            <td>{$book->getPublishYear()}</td>
+                            <td>{$book->getIsbn()}</td>
+                            <td><input type='button' value='Delete ' onclick=\"window.location.href='../controllers/delete_book.php?isbn={$book->getIsbn()}'\" /></td>
                         </tr>";
                     }
                 }

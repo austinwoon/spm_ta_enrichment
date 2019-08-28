@@ -54,21 +54,21 @@ class BookDAO
 
     public function createBook($book)
     {
-        if (strlen($book->isbn) != 6) {
+        if (strlen($book->getIsbn()) != 6) {
             return False;
         }
 
-        if (!$this->validDate($book->publishYear)) {
+        if (!$this->validDate($book->getPublishYear())) {
             return False;
         }
 
         $sql = "INSERT INTO books VALUES (:title, :isbn, :author, :publishYear)";
         $stmt = $this->conn->prepare($sql);
 
-        $stmt->bindParam(":title", $book->title);
-        $stmt->bindParam(":isbn", $book->isbn);
-        $stmt->bindParam(":author", $book->author);
-        $stmt->bindParam(":publishYear", $book->publishYear);
+        $stmt->bindParam(":title", $book->getTitle());
+        $stmt->bindParam(":isbn", $book->getIsbn());
+        $stmt->bindParam(":author", $book->getauthor());
+        $stmt->bindParam(":publishYear", $book->getPublishYear());
 
         $stmt->execute();
         return True;
@@ -81,7 +81,7 @@ class BookDAO
             $sql = "DELETE from books WHERE isbn = :isbn";
             $stmt = $this->conn->prepare($sql);
 
-            $stmt->bindParam(":isbn", $book->isbn);
+            $stmt->bindParam(":isbn", $book->getIsbn());
 
             $stmt->execute();
             return True;
@@ -103,10 +103,10 @@ class BookDAO
                         isbn = :isbn";
             $stmt = $this->conn->prepare($sql);
 
-            $stmt->bindParam(":title", $book->title);
-            $stmt->bindParam(":isbn", $book->isbn);
-            $stmt->bindParam(":author", $book->author);
-            $stmt->bindParam(":publishYear", $book->publishYear);
+            $stmt->bindParam(":title", $book->getTitle());
+            $stmt->bindParam(":isbn", $book->getIsbn());
+            $stmt->bindParam(":author", $book->getauthor());
+            $stmt->bindParam(":publishYear", $book->getPublishYear());
 
             $stmt->execute();
             return True;
