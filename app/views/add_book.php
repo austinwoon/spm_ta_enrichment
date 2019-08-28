@@ -8,7 +8,7 @@ $userBooks = $userBooksDAO->getUserBooks();
 ?>
 <html>
     <body>
-        <form action="../controller/add_to_book_list.php" method="get">
+        <form action="../controllers/add_to_book_list.php" method="get">
             ISBN 
             <select name = "isbn_to_add">
                 <?php 

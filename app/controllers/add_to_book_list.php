@@ -9,5 +9,5 @@ if (isset($_GET['isbn_to_add'])) {
     $userBookDAO->addToBookList($book);
 }
 
-header("Location:../view/book_list.php");
+header("Location:../views/book_list.php");
 ?>

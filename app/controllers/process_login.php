@@ -18,16 +18,16 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     if ($user->authenticateUser($input_pw)) {
         $_SESSION['username'] = $username;
         $_SESSION['userType'] = $type;
-        header("Location: ../views/book_list.php");
+        header("Location: ../viewss/book_list.php");
         exit();
     } else {
         $_SESSION['error'] = "Invalid Username or Password";
     }
 
     if (!empty($_SESSION['error'])) {
-        header("Location ../views/home.php");
+        header("Location ../viewss/home.php");
     }
 } else {
-    header("Location:../views/home.php");
+    header("Location:../viewss/home.php");
     exit();
 }

@@ -7,5 +7,5 @@ if (isset($_GET['title']) && isset($_GET['isbn']) && isset($_GET['author']) && i
     $dao->addToBookList($book);
 }
 
-header("Location:../view/book_list.php");
+header("Location:../views/book_list.php");
 ?>

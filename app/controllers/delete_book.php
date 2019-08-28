@@ -9,5 +9,5 @@ if (isset($_GET['isbn'])) {
     $booklistDAO->deleteFromBookList($book, $_SESSION['username']);
 }
 
-header("Location:../view/book_list.php");
+header("Location:../views/book_list.php");
 ?>

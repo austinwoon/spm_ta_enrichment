@@ -6,8 +6,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $dao = new UserDAO();
     
     $dao->registerUser($user);
-    header("Location:../view/home.php");
+    header("Location:../views/home.php");
 } else {
-    header("Location:../view/home.php");
+    header("Location:../views/home.php");
 }
 ?>

@@ -6,7 +6,7 @@ spl_autoload_register(function($class) {
     // we are assuming that it is in the same directory as common.php
     // otherwise we have to do
     // $path = 'path/to/' . $class . ".php"    
-    require_once "../model/$class.php"; 
+    require_once "../models/$class.php"; 
   
 });
 

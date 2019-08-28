@@ -13,12 +13,12 @@
                 unset($_SESSION['error']);
             };
         ?>
-        <form action = "../controller/process_login.php" method = "POST">
+        <form action = "../controllers/process_login.php" method = "POST">
             Username<input type = "text" name = "username">
             Password<input type = "password" name = "password">
             <input type = "submit" value = "Login">
         </form>
 
-        <a href = "../view/register.php">Register New Account</a>
+        <a href = "../views/register.php">Register New Account</a>
 </body>
 </html>
