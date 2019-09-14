@@ -4,11 +4,11 @@ class UserBooksDAO {
     private $username;
     private $conn;
 
-    function __construct($username)
+    function __construct($username)         // only need username to construct UserBooksDAO
     {
         $this->username = $username;
         $this->conn = $this->getConn();
-        $this->bookList = $this->getUserBooks($this->username);
+        $this->bookList = $this->getUserBooks($this->username); 
     }
 
     private function getConn()
@@ -19,10 +19,10 @@ class UserBooksDAO {
     }
 
     # get list of the ISBNs of the books each user owns
-    public function getUserBooks()
+    public function getUserBooks()                                       
     {
         $list = [];
-        $sql = "select isbn from userbooks where username = :username";
+        $sql = "select isbn from userbooks where username = :username";   
 
         $stmt = $this->conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -37,13 +37,14 @@ class UserBooksDAO {
         return $list;
     }
 
-    public function deleteFromBookList($book)
+    public function deleteFromBookList($isbn)         // initially takes in a Book object 
     {
         try {
             $sql = "DELETE from userbooks WHERE isbn = :isbn AND username = :username";
             $stmt = $this->conn->prepare($sql);
 
-            $stmt->bindParam(":isbn", $book->getIsbn());
+//            $stmt->bindParam(":isbn", $book->getIsbn());
+            $stmt->bindParam(":isbn", $isbn);
             $stmt->bindParam(":username", $this->username);
 
             $stmt->execute();
@@ -53,12 +54,13 @@ class UserBooksDAO {
         }
     }
 
-    public function addToBookList($book)
+    public function addToBookList($isbn)        // initially takes in a Book object 
     {
         $sql = "INSERT INTO userbooks VALUES (:username, :isbn)";
         $stmt = $this->conn->prepare($sql);
 
-        $stmt->bindParam(":isbn", $book->getIsbn());
+//        $stmt->bindParam(":isbn", $book->getIsbn());
+        $stmt->bindParam(":isbn", $isbn);
         $stmt->bindParam(":username", $this->username);
 
         $stmt->execute();

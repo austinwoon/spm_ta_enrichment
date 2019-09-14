@@ -26,5 +26,5 @@ class User {
     public function getType() {
         return $this->type;
     }
-
 }
+?>

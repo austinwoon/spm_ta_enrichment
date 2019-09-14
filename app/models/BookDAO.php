@@ -67,7 +67,7 @@ class BookDAO
 
         $stmt->bindParam(":title", $book->getTitle());
         $stmt->bindParam(":isbn", $book->getIsbn());
-        $stmt->bindParam(":author", $book->getauthor());
+        $stmt->bindParam(":author", $book->getAuthor());            // originally getauthor()
         $stmt->bindParam(":publishYear", $book->getPublishYear());
 
         $stmt->execute();
@@ -105,7 +105,7 @@ class BookDAO
 
             $stmt->bindParam(":title", $book->getTitle());
             $stmt->bindParam(":isbn", $book->getIsbn());
-            $stmt->bindParam(":author", $book->getauthor());
+            $stmt->bindParam(":author", $book->getAuthor());        // originally getauthor()
             $stmt->bindParam(":publishYear", $book->getPublishYear());
 
             $stmt->execute();
@@ -115,3 +115,4 @@ class BookDAO
         }
     }
 }
+?>

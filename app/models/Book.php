@@ -27,5 +27,5 @@ class Book {
     function getPublishYear() {
         return $this->publishYear;
     }
-    
 }
+?>

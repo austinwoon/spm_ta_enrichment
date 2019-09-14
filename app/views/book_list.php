@@ -9,7 +9,7 @@ $username = $_SESSION['username'];
 # list of all books that the user owns
 $bookDAO = new BookDAO();
 $booklistDAO = new UserBooksDAO($username);
-$booklist = $booklistDAO->getUserBooks();
+$booklist = $booklistDAO->getUserBooks();       // returns a list of isbn
 ?>
 
 <html>
@@ -42,13 +42,13 @@ $booklist = $booklistDAO->getUserBooks();
                     </tr>
                 <?php
                 if (!empty($booklist)) {
-                    foreach ($booklist as $bookisbn) {
-                        $book = $bookDAO->getBookDetails($bookisbn);
+                    foreach ($booklist as $bookisbn) {                  // foreach isbn
+                        $book = $bookDAO->getBookDetails($bookisbn);    // returns a Book object 
             
                         echo "
                         <tr>
-                            <td>{$book->getTitle()}</td>
-                            <td>{$book->getauthor()}</td>
+                            <td>{$book->getTitle()}</td>       
+                            <td>{$book->getAuthor()}</td>               
                             <td>{$book->getPublishYear()}</td>
                             <td>{$book->getIsbn()}</td>
                             <td><input type='button' value='Delete ' onclick=\"window.location.href='../controllers/delete_book.php?isbn={$book->getIsbn()}'\" /></td>
