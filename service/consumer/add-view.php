@@ -1,9 +1,3 @@
-<?php
-
-require_once 'common.php';
-
-?>
-
 <html>
     <body>        
         <h1>Add Book</h1>
@@ -40,7 +34,7 @@ require_once 'common.php';
             $author = $_POST['author'];
             $publishYear = $_POST['publishYear'];
 
-            $json_curl = curl_init("http://localhost/service/add.php/");
+            $json_curl = curl_init("http://localhost/service/provider/add.php/");
             $php_data = array(
                 'title' => $title, 
                 'isbn' => $isbn, 
