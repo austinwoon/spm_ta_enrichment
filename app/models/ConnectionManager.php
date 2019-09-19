@@ -7,7 +7,7 @@ class ConnectionManager {
     # uncomment for mamp users
     # private $password = "root";
     private $db_name = "spm_demo";
-    private $conn = "";
+    private $conn;
 
     public function getConnection() {
         $dns = "mysql:host={$this->host};dbname={$this->db_name}";

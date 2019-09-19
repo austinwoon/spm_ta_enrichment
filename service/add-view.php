@@ -40,6 +40,8 @@ require_once 'common.php';
             $author = $_POST['author'];
             $publishYear = $_POST['publishYear'];
 
+            $curl = Curl("post");
+
             $json_curl = curl_init("http://localhost/service/add.php/");
             $php_data = array(
                 'title' => $title, 
