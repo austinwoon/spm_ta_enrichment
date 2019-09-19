@@ -8,7 +8,7 @@
             $author = $_POST['author'];
             $publishYear = $_POST['publishYear'];
 
-            $json_url = curl_init("http://localhost/service/provider/add.php/");   // initiate curl 
+            $json_url = curl_init("http://localhost/spm_ta_enrichment/service/provider/add.php/");   // initiate curl 
             $php_data = array(
                 'title' => $title, 
                 'isbn' => $isbn, 

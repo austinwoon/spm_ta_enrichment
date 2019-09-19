@@ -7,7 +7,7 @@
         <h1>Book Listing</h1>
         <?php
 
-        $json_url = "http://localhost/service/provider/retrieve.php/";
+        $json_url = "http://localhost/spm_ta_enrichment/service/provider/retrieve.php/";
         $json_response = file_get_contents($json_url);
         $php_response = json_decode($json_response);        
         $book_objects = $php_response->result;         
