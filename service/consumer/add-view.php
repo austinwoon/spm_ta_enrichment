@@ -33,13 +33,7 @@
             $author = $_POST['author'];
             $publishYear = $_POST['publishYear'];
 
-<<<<<<< HEAD:service/add-view.php
-            $curl = Curl("post");
-
-            $json_curl = curl_init("http://localhost/service/add.php/");
-=======
             $json_url = curl_init("http://localhost/service/provider/add.php/");   // initiate curl 
->>>>>>> ff892be7cc969fcf25c41643ed9955120d79a0fa:service/consumer/add-view.php
             $php_data = array(
                 'title' => $title, 
                 'isbn' => $isbn, 
