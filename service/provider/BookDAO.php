@@ -45,35 +45,6 @@ class BookDAO
         }
     }
 
-    private function validDate($date, $format = 'Y-m-d')
-    {
-        $d = DateTime::createFromFormat($format, $date);
-        // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
-        return $d && $d->format($format) === $date;
-    }
-
-    // public function createBook($book)
-    // {
-    //     if (strlen($book->getIsbn()) != 6) {
-    //         return False;
-    //     }
-
-    //     if (!$this->validDate($book->getPublishYear())) {
-    //         return False;
-    //     }
-
-    //     $sql = "INSERT INTO books VALUES (:title, :isbn, :author, :publishYear)";
-    //     $stmt = $this->conn->prepare($sql);
-
-    //     $stmt->bindParam(":title", $book->getTitle());
-    //     $stmt->bindParam(":isbn", $book->getIsbn());
-    //     $stmt->bindParam(":author", $book->getAuthor());            // originally getauthor()
-    //     $stmt->bindParam(":publishYear", $book->getPublishYear());
-
-    //     $stmt->execute();
-    //     return True;
-    // }
-
     public function createBook($title, $isbn, $author, $publishYear) {
         $sql = "INSERT INTO books VALUES (:title, :isbn, :author, :publishYear)";
         $stmt = $this->conn->prepare($sql);
@@ -88,13 +59,12 @@ class BookDAO
     }
 
     # delete book by ISBN
-    public function deleteBook($book)
-    {
+    public function deleteBook($isbn) {
         try {
             $sql = "DELETE from books WHERE isbn = :isbn";
             $stmt = $this->conn->prepare($sql);
 
-            $stmt->bindParam(":isbn", $book->getIsbn());
+            $stmt->bindParam(":isbn", $isbn);
 
             $stmt->execute();
             return True;
@@ -103,8 +73,8 @@ class BookDAO
         }
     }
 
-    public function updateBook($book)
-    {
+    # update book by ISBN
+    public function updateBook($title, $isbn, $author, $publishYear) {
         try {
             $sql = "UPDATE
                         books
@@ -116,10 +86,10 @@ class BookDAO
                         isbn = :isbn";
             $stmt = $this->conn->prepare($sql);
 
-            $stmt->bindParam(":title", $book->getTitle());
-            $stmt->bindParam(":isbn", $book->getIsbn());
-            $stmt->bindParam(":author", $book->getAuthor());        // originally getauthor()
-            $stmt->bindParam(":publishYear", $book->getPublishYear());
+            $stmt->bindParam(":title", $title);
+            $stmt->bindParam(":isbn", $isbn);
+            $stmt->bindParam(":author", $author);        
+            $stmt->bindParam(":publishYear", $publishYear);
 
             $stmt->execute();
             return True;

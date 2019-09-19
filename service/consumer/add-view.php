@@ -28,23 +28,25 @@
                 </form>";
 
         } else {
-            // 1) send the request 
             $title = $_POST['title'];
             $isbn = $_POST['isbn'];
             $author = $_POST['author'];
             $publishYear = $_POST['publishYear'];
 
-            $json_curl = curl_init("http://localhost/service/provider/add.php/");
+            $json_url = "http://localhost/service/provider/add.php/";
+            $ch = curl_init();      // open connection 
             $php_data = array(
                 'title' => $title, 
                 'isbn' => $isbn, 
                 'author' => $author,
                 'publishYear' => $publishYear);
             $json_data = json_encode($php_data);
-            curl_setopt($json_curl, CURLOPT_POST, 1);   // tell curl we want to do a POST request
-            curl_setopt($json_curl, CURLOPT_POSTFIELDS, $json_data);    // attach json data to the curl
-            curl_setopt($json_curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));  // standard
-            $result = curl_exec($json_curl);   // execute the request
+            curl_setopt($ch, CURLOPT_URL, $json_url);
+            curl_setopt($ch, CURLOPT_POST, 1);   // tell curl we want to do a POST request
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);    // attach json data to the curl
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));  // standard
+            $result = curl_exec($ch);   // execute the request
+            curl_close($ch); 
         }
         ?>
     </body>
