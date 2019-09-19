@@ -1,9 +1,3 @@
-<?php
-
-require_once 'common.php';
-
-?>
-
 <html>
     <body>
         <?php 
@@ -13,7 +7,7 @@ require_once 'common.php';
         <h1>Book Listing</h1>
         <?php
 
-        $json_url = "http://localhost/service/read-all.php/";
+        $json_url = "http://localhost/service/provider/retrieve.php/";
         $json_response = file_get_contents($json_url);
         $php_response = json_decode($json_response);        
         $book_objects = $php_response->result;         

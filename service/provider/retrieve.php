@@ -17,12 +17,12 @@ $list = $dao->getAllBooks();    // returns Book objects
 //     </table>";
 // }
 
-$result = [
+$response = [
             "status"=>"success",
             "result"=>array_values($list)
         ];
         
 header('Content-Type: application/json');
-echo json_encode($result, JSON_PRETTY_PRINT);
+echo json_encode($response, JSON_PRETTY_PRINT);
 
 ?>
