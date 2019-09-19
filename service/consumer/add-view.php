@@ -33,20 +33,20 @@
             $author = $_POST['author'];
             $publishYear = $_POST['publishYear'];
 
-            $json_url = "http://localhost/service/provider/add.php/";
-            $ch = curl_init();      // open connection 
+            $json_url = curl_init("http://localhost/service/provider/add.php/");   // initiate curl 
             $php_data = array(
                 'title' => $title, 
                 'isbn' => $isbn, 
                 'author' => $author,
                 'publishYear' => $publishYear);
             $json_data = json_encode($php_data);
-            curl_setopt($ch, CURLOPT_URL, $json_url);
-            curl_setopt($ch, CURLOPT_POST, 1);   // tell curl we want to do a POST request
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);    // attach json data to the curl
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));  // standard
-            $result = curl_exec($ch);   // execute the request
-            curl_close($ch); 
+            curl_setopt($json_url, CURLOPT_POST, 1);   // tell curl we want to do a POST request
+            curl_setopt($json_url, CURLOPT_POSTFIELDS, $json_data);    // attach json data to the curl
+            curl_setopt($json_url, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));  // standard
+            curl_setopt($json_url, CURLOPT_RETURNTRANSFER, true); // return the string of curl_exec()
+            $result = curl_exec($json_url);   // execute the request
+            $result = json_decode($result, TRUE);  // decode from json to php 
+            echo $result["status"]; // print out the result 
         }
         ?>
     </body>

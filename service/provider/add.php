@@ -3,13 +3,13 @@
 require_once 'common.php';
 
 $content = file_get_contents("php://input");    // to read POST data from request body
-$response = json_decode($content);      // $response is an object with title, isbn, author, publishYear attributes      
+$request = json_decode($content);      // $request is an object with title, isbn, author, publishYear attributes      
 
 $dao = new BookDAO();
-$title = $response->title;
-$isbn = $response->isbn;
-$author = $response->author;
-$publishYear = $response->publishYear;
+$title = $request->title;
+$isbn = $request->isbn;
+$author = $request->author;
+$publishYear = $request->publishYear;
 
 $list = $dao->createBook($title, $isbn, $author, $publishYear);    // returns Book objects
 
@@ -26,16 +26,16 @@ $list = $dao->createBook($title, $isbn, $author, $publishYear);    // returns Bo
 // }
 
 if ($list == True) {
-    $result = [
+    $response = [
         "status"=>"success"
     ];
 } else { 
-    $result = [
+    $response = [
         "status"=>"failed"
     ];
 }
         
 header('Content-Type: application/json');
-echo json_encode($result, JSON_PRETTY_PRINT);
+echo json_encode($response, JSON_PRETTY_PRINT);
 
 ?>
