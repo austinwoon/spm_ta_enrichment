@@ -3,32 +3,6 @@
         <h1>Add Book</h1>
 
         <?php
-            echo "<form action='add-request.php' method='post'>";
-                echo "<table>
-                        <tr>
-                            <td> Title </td>
-                            <td> <input type='text' name='title'/> </td>
-                        <tr> 
-                        <tr>
-                            <td> ISBN </td>
-                            <td> <input type='text' name='isbn'/> </td>
-                        </tr>
-                        <tr>
-                            <td> Author </td>
-                            <td> <input type='text' name='author'/> </td>
-                        </tr>
-                        <tr>
-                            <td> Publish Year </td>
-                            <td> <input type='text' name='publishYear'/> </td>
-                        </tr>
-                    </table>
-
-                    <input name='submit' type='submit'/>
-                </form>";
-<<<<<<< HEAD
-=======
-
-        } else {
             $title = $_POST['title'];
             $isbn = $_POST['isbn'];
             $author = $_POST['author'];
@@ -47,9 +21,12 @@
             curl_setopt($json_url, CURLOPT_RETURNTRANSFER, true); // return the string of curl_exec()
             $result = curl_exec($json_url);   // execute the request
             $result = json_decode($result, TRUE);  // decode from json to php 
-            echo $result["status"]; // print out the result 
-        }
->>>>>>> 8859e4b707e53f0ac8df1e3142f3ae94660b9547
+
+            if ($result["status"] == "success") {
+                header("Location:retrieve-view.php");
+            } else {
+                echo "Unsuccessful";
+            }
         ?>
     </body>
 </html>

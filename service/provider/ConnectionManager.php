@@ -1,21 +1,24 @@
 <?php
-
 class ConnectionManager {
-   
-    public function getConnection() {
-        
-        $host = "localhost";
-        $username = "root";
-        $password = "";  
-        $dbname = "spm_demo";
-        $port = 3306;    
+    # edit this according to your settings
+    private $host = "localhost";
+    private $username = "root";
+    private $password = "";
+    # uncomment for mamp users
+    # private $password = "root";
+    private $db_name = "enrichment_ex_1";
+    private $conn;
 
-        $url  = "mysql:host={$host};dbname={$dbname}";
-        
-        $conn = new PDO($url, $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-        return $conn;  
-        
+    public function getConnection() {
+        $dns = "mysql:host={$this->host};dbname={$this->db_name}";
+
+        try {
+            $this->conn = new PDO($dns, $this->username, $this->password);
+        } catch (PDOException $e) {
+            echo "Connection error: " . $e->getMessage();
+        }
+        return $this->conn;
     }
-    
+
 }
+?>
