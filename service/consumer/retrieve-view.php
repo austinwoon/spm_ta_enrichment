@@ -2,6 +2,8 @@
     <body>
         <?php 
         echo "<h2><a href='add-view.php'>Add Book</a></h2>";
+        echo "<h2><a href='delete-view.php'>Delete Book</a></h2>";
+        echo "<h2><a href='update-view.php'>Update Book</a></h2>";
         ?>
         
         <h1>Book Listing</h1>
